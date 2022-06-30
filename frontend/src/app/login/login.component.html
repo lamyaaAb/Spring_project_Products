@@ -1,0 +1,54 @@
+<!--p class="pclass1" ><b>Connexion</b></p>
+<small *ngIf="mssgerror==1"><b style="color:red;margin-top:50px;margin-left:20px;">Email ou mot de passe invalid</b></small>
+
+  <div class="card  w-75 ">
+     <div class="card-body">
+      <form  #loginForm="ngForm" (ngSubmit)="loginAdmin()">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Adresse Email</label>
+          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" [(ngModel)]="admin.email" >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="admin.password">
+        </div>
+        <button type="submit"  class="btn btn-primary">Login</button>
+      </form>
+     </div>
+</div-->
+<div class="container" style="margin-top: 50px;" data-aos="fade-up">    
+  <div class="row">
+    <div class="col-lg-4">
+      <img src="assets/images/pagelogin2.jpg" style="height: 350px;width:600px;" class="img-fluid" alt="">
+    </div>
+    <div class="col-lg-8 pt-4 pt-lg-0 content">
+      <section id="contact">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title">
+            <p class="pclass1">Connexion</p>
+            <small *ngIf="mssgerror==1"><b style="color:red;margin-top:50px;margin-left:20px;">Email ou mot de passe invalid</b></small>
+            <p></p>
+          </div>
+            <div >
+              <form #loginForm="ngForm" (ngSubmit)="loginAdmin()">
+                <div class="row">
+                  <div class="form-group mt-3">
+                    <input type="text" name="email" class="form-control"  name="email" aria-describedby="emailHelp" [(ngModel)]="admin.email"  placeholder="Votre adresse email" required>
+                  </div>
+                <div class="form-group mt-3">
+                  <input type="password"  name="mdp" class="form-control"  name="password" [(ngModel)]="admin.password" placeholder="Votre mot de passe" required>
+                </div>
+                <br>
+                <br>
+                <br>   
+                <div class="text-center"><button type="submit"  class="btn btn-primary">Se connecter</button></div>
+                </div>
+              </form>
+            </div>
+          </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,23 @@
+body{
+    background-color:#005ca4;
+}
+
+.menu{
+    margin-top: -90px;
+    margin-left: 300px;
+    font-weight: bold;
+ }
+
+ 
+.imgcat{
+    width:150px;
+    height: 100px;
+    
+    
+    }
+
+ .buttonMenu
+ {
+    margin-top: 60px;
+    margin-left: 40px;
+ }   

@@ -1,0 +1,16 @@
+{
+    "/api/*": {
+        "target": "http://localhost:8090",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    },
+
+    "serve": {
+        "builder": "@angular-devkit/build-angular:dev-server",
+        "options": {
+          "browserTarget": "move-safe:build",
+          "proxyConfig": "src/proxy.conf.json"
+                  }   
+            }                
+}

@@ -1,0 +1,18 @@
+[
+    {
+    "nom":"nom1",
+    "corps":"ceci est le corps de la requete1"
+    },
+    {
+        "nom":"nom2",
+        "corps":"ceci est le corps de la requete2"
+    },
+    {
+        "nom":"nom3",
+        "corps":"ceci est le corps de la requete3"
+    },
+    {
+        "nom":"nom4",
+        "corps":"ceci est le corps de la requete4"
+    }
+]

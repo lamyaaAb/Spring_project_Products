@@ -1,0 +1,162 @@
+<!---  Le début du menu de la page  -->
+<div class="container menu">
+    <nav class="navbar navbar-expand-lg navbar-light">
+     <div class="container-fluid">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <div class="collapse navbar-collapse" id="navbarNav">
+         <ul class="navbar-nav">
+           <li class="nav-item">
+             <a class="nav-link active" (click)="gethome2()" aria-current="page" routerLink="home"><i class="fa fa-home"></i> Home</a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link active" (click)="getCategories2()" aria-current="page" routerLink=""><i class="fa fa-clone"></i> Categories</a>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link active"  (click)="getProduit()" aria-current="page" routerLink=""><i class="fa fa-cart-plus"></i> Produits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="getPromotion()" aria-current="page" routerLink=""><i class="fa fa-percent"></i> Promotions</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink=""><i class="fa fa-sign-out"></i> Se déconnecter</a>
+          </li>
+ 
+         </ul>
+       </div>
+       
+     </div>
+   </nav> 
+</div>
+<!---  La fin du menu de la page  -->
+<div class="container buttonMenu">
+    <button type="button"  data-bs-toggle="modal" data-bs-target="#ajoutModal" class="btn btn-outline-primary">Ajouter promotion</button>
+    <button type="button"  data-bs-toggle="modal" data-bs-target="#modifModal" style="margin-left:20px;" class="btn btn-outline-primary">Modifier promotion</button>
+    <button type="button"  data-bs-toggle="modal" data-bs-target="#suppModal"  style="margin-left:20px;" class="btn btn-outline-primary">Supprimer promotion</button>
+</div>
+<br><br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Id promotion</th>
+          <th scope="col">Nom promotion</th>
+          <th scope="col">Taux réduction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prom of tabprom ">
+          <th scope="row">{{prom.idpromotion}}</th>
+          <td>{{prom.nompromotion}}</td>
+          <td>{{prom.tauxreduction}}</td>
+        </tr>
+
+      </tbody>
+</table>
+
+
+<!-- Modal, cad la page likatban meli kanwerko 3la ajouter -->
+<div class="modal fade" id="ajoutModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter une promotion</h5>
+          <small *ngIf="mssgdataajou==1"><b style="color:green;margin-top:50px;margin-left:20px;">Promotion bien ajoutée </b></small>
+          <small *ngIf="mssgerrorajou==1"><b style="color:red;margin-top:50px;margin-left:20px;">Promotion n'est pas ajoutée</b></small>
+          <small *ngIf="mssgerrortaux==1"><b style="color:red;margin-top:50px;margin-left:20px;">Attention! le taux de réduction ne doit pas dépasser 1 (100%) </b></small>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  #loginForm="ngForm" (ngSubmit)="ajouterPromotion()" >
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Nom promotion</label>
+                  <input type="text" class="form-control" name="nompromotion" [(ngModel)]="prom.nompromotion">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label" >taux réduction</label>
+                  <input type="text" class="form-control" name="tauxreduction" [(ngModel)]="prom.tauxreduction">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label" >Catégorie</label>
+                    <input type="text" class="form-control" name="nomcat" [(ngModel)]="nomcat">
+                  </div>
+                <div class="modal-footer">
+                    <button type="submit"  class="btn btn-primary">Ajouter</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+              </form> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal, cad la page likatban meli kanwerko 3la supprimer -->
+<div class="modal fade" id="suppModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Supprimer une promotion</h5>
+          <small *ngIf="mssgdatasupp==1"><b style="color:green;margin-top:50px;margin-left:20px;">Promotion bien supprimée</b></small>
+          <small *ngIf="mssgerrorsupp==1"><b style="color:red;margin-top:50px;margin-left:20px;">Promotion n'est pas supprimée</b></small>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  #loginForm="ngForm" (ngSubmit)="supprimerPromotion()">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Id promotion</label>
+                  <input type="text" class="form-control" name="idpromotion" [(ngModel)]="prom.idpromotion">
+                </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                  </div>
+              </form> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!-- Modal, cad la page likatban meli kanwerko 3la modifier -->
+<div class="modal fade" id="modifModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modifier une promotion</h5>
+          <small *ngIf="mssgdatamodif==1"><b style="color:green;margin-top:50px;margin-left:20px;">Promotion bien modifiée </b></small>
+          <small *ngIf="mssgerrormodif==1"><b style="color:red;margin-top:50px;margin-left:20px;">Promotion n'est pas modifiée</b></small>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form  #loginForm="ngForm" >
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Id promotion</label>
+                  <input type="text"  style="width:100px;" class="form-control" name="idpromotion"  [(ngModel)]="prom.idpromotion" >
+                  <button type="submit" style="margin-top:-68px;margin-left:150px;" (click)="rechercherPromotion()" class="btn btn-primary">Rechercher</button>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nom promotion</label>
+                    <input type="text" class="form-control" name="nompromotion" value={{prom2.nompromotion}} [(ngModel)]="prom.nompromotion">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Taux réduction</label>
+                  <input type="text" class="form-control" name="tauxreduction" value={{prom2.tauxreduction}} [(ngModel)]="prom.tauxreduction">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Categorie</label>
+                <input type="text" class="form-control" name="nomcat" value={{nomcat2}} [(ngModel)]="nomcat">
+               </div>
+                  <div class="modal-footer">
+                    <button type="submit" (click)="modifierPromotion()" class="btn btn-primary">Modifier</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                  </div>
+              </form> 
+        </div>
+
+      </div>
+    </div>
+  </div>
+
